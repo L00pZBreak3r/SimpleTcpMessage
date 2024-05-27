@@ -76,7 +76,10 @@ con_handler::con_handler(AsynchronousServer* aServer)
 con_handler::~con_handler()
 {
     if (mThread)
+    {
+        mThread->join();
         delete mThread;
+    }
     m_sock->close();
     delete m_sock;
 }
